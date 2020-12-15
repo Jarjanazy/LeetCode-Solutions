@@ -1,15 +1,3 @@
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
- * @param {ListNode} l1
- * @param {ListNode} l2
- * @return {ListNode}
- */
 var addTwoNumbers = function(l1, l2) {
     return addTwStringsIntoLinkedList(convertLinkedListIntoReversedString(l1), convertLinkedListIntoReversedString(l2));
 };
@@ -25,10 +13,8 @@ class ListNode{
 }
 
 function addTwStringsIntoLinkedList(s1, s2){
-    let intSum = Number(s1) + Number(s2);
-    let stringSum = intSum.toString();
-
-    console.log(stringSum);
+    let intSum = BigInt(s1) + BigInt(s2);
+    let stringSum = BigInt(intSum) + '';
 
     const rootNode = new ListNode(stringSum.charAt(stringSum.length-1), null);
 
@@ -55,5 +41,3 @@ function convertLinkedListIntoReversedString(linkedList){
     }
     return currentValue.split("").reverse().join("");
 }
-
-// [1 4 9] 1 
