@@ -5,7 +5,7 @@
  */
 var sumEvenAfterQueries = function(A, queries) {
     let result = []
-    queries.forEach(function(list, index, element){
+    queries.forEach(function(element, index){
         performQuery(A, element);
         result[index] = getSumOfEvenNumbers(A);
     })
@@ -14,12 +14,12 @@ var sumEvenAfterQueries = function(A, queries) {
 
 
 function performQuery(A, query){
-    A[query[1]] = query[0];
+    A[query[1]] += query[0];
 }
 
 function getSumOfEvenNumbers(list){
     return list.reduce(function(total, currentValue){
         if (currentValue % 2 === 0) total += currentValue;
         return total;
-    });
+    }, 0);
 }
