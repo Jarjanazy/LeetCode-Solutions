@@ -5,6 +5,7 @@
  */
 var fourSum = function(nums, target) {
     let allPossibleSubArrays =  getAllPossibleSubArrays(nums);
+    console.log(allPossibleSubArrays);
     let resultSubArrays = [];
     [...allPossibleSubArrays].forEach(function(subArray){
         if (subArray.reduce((prev, val) => prev + val, 0) === target){
@@ -28,7 +29,9 @@ function getAllPossibleSubArrays(numsArray){
 function addAllPossibleSubArraysFromStartIndex(baseArray, numsArray,startIndex){
     
     for (let i = startIndex; i < numsArray.length - 3; i++){
-        let subArray = [numsArray[i], numsArray[i + 1], numsArray[i + 2], numsArray[i + 3]]
-        baseArray.push(subArray);
+        for(let slideValue = 0; i + slideValue + 3 < numsArray.length  ; slideValue++){
+            let subArray = [numsArray[i], numsArray[i + slideValue + 1], numsArray[i + slideValue + 2], numsArray[i + slideValue + 3]]
+            baseArray.push(subArray);
+        }
     }
 }
