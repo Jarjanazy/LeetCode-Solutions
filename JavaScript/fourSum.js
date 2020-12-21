@@ -3,19 +3,29 @@
  * @param {number} target
  * @return {number[][]}
  */
+
+
 var fourSum = function(nums, target) {
     let allPossibleSubArrays =  getAllPossibleSubArrays(nums);
-    console.log(allPossibleSubArrays);
+    
     let resultSubArrays = [];
     [...allPossibleSubArrays].forEach(function(subArray){
         if (subArray.reduce((prev, val) => prev + val, 0) === target){
-            resultSubArrays.push(subArray);
+            if (!isAlreadyAdded(subArray, resultSubArrays)) resultSubArrays.push(subArray);
         }
     });
 
     return resultSubArrays;
 }; 
 
+function isAlreadyAdded(subArray, resultSubArrays){
+    for (let i = 0; i < resultSubArrays.length; i++){
+        let arr = resultSubArrays[i];
+        if (arr.length === subArray.length && arr.every(function(value, index) { return value === subArray[index]})        ) 
+            return true;
+    }
+    return false;
+}
 
 
 function getAllPossibleSubArrays(numsArray){
@@ -27,11 +37,15 @@ function getAllPossibleSubArrays(numsArray){
 }
 
 function addAllPossibleSubArraysFromStartIndex(baseArray, numsArray,startIndex){
-    
-    for (let i = startIndex; i < numsArray.length - 3; i++){
-        for(let slideValue = 0; i + slideValue + 3 < numsArray.length  ; slideValue++){
-            let subArray = [numsArray[i], numsArray[i + slideValue + 1], numsArray[i + slideValue + 2], numsArray[i + slideValue + 3]]
-            baseArray.push(subArray);
+        for(let j = startIndex + 1; j < numsArray.length - 2; j++){
+            for(let k = j + 1; k < numsArray.length - 1; k++){
+                for(let l = k + 1; l < numsArray.length; l++){
+                    let subArray = [numsArray[startIndex], numsArray[j], numsArray[k], numsArray[l]]
+                    baseArray.push(subArray);
+                }
+            }
         }
-    }
+
+
+    
 }
