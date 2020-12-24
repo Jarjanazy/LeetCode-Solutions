@@ -7,6 +7,7 @@
 
 var fourSum = function(nums, target) {
     let allPossibleSubArrays =  getAllPossibleSubArrays(nums);
+    nums = null;
     let resultSubArrays = [];
     [...allPossibleSubArrays].forEach(function(subArray){
         if (subArray.reduce((prev, val) => prev + val, 0) === target){
@@ -21,9 +22,9 @@ function isAlreadyAdded(newSubArray, existingSubArrays){
     for (let i = 0; i < existingSubArrays.length; i++){
         let resultSubArray = new Set(existingSubArrays[i]);
         let newSubArraySet = new Set(newSubArray);
-        const allElementsOfNewListExisit = [...Array.from(newSubArraySet)].every(element => resultSubArray.has(element));
-        if(allElementsOfNewListExisit && resultSubArray.size === newSubArraySet.size){
-            return true;
+        if(resultSubArray.size === newSubArraySet.size){
+            const allElementsOfNewListExisit = [...newSubArraySet].every(element => resultSubArray.has(element));
+            if (allElementsOfNewListExisit) return true;
         }  
     }
     return false;
@@ -47,7 +48,4 @@ function addAllPossibleSubArraysFromStartIndex(baseArray, numsArray,startIndex){
                 }
             }
         }
-
-
-    
 }
