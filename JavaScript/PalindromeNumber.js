@@ -3,18 +3,14 @@
  * @return {boolean}
  */
 var isPalindrome = function(x) {
-    let num = x.toString().split("");
-    if (num.length < 2) return true;
-    let currentNum;
-    let matchingNum;
-    const windowSize = Math.floor(num.length / 2);
-    const extraWindow = num.length % 2 == 0 ? 0 : 1;
+    let nums = x.toString().split("");
+    if (nums.length <= 1) return true;
+   
+    const windowSize = Math.floor(nums.length / 2);
+    let numsIndexFromEnd = nums.length - 1;
 
-    for (let i = 0; i <= (num.length / 2 )- 1; i++){
-        currentNum = num[i];
-        matchingNum = num[i + windowSize + extraWindow];
-        console.log(i, i+windowSize);
-        if (currentNum != matchingNum) return false;
+    for (let i = 0; i <= windowSize - 1; i++){
+        if (nums[i] != nums[numsIndexFromEnd--]) return false;
     }
     return true;
 };
