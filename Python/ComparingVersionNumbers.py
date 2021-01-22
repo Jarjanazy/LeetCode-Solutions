@@ -18,13 +18,10 @@ class Solution(object):
                 return -1
             currentIndex += 1
 
-        if (version1_segments_length > version2_segments_length):
+        if (version1_segments_length != version2_segments_length):
             if (doesntEndWithZeros(version1_segments_length, version1_segments,currentIndex)):
                 return 1
-            else:
-                return 0
-        elif (version2_segments_length > version1_segments_length):
-            if (doesntEndWithZeros(version2_segments_length, version2_segments,currentIndex)):
+            elif (doesntEndWithZeros(version2_segments_length, version2_segments,currentIndex)):
                 return -1
             else:
                 return 0
