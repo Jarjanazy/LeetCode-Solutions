@@ -11,4 +11,10 @@ public class QuestionsTest {
 
     }
 
+    @Test
+    void testRotateArray(){
+        Questions questions = new Questions();
+        questions.rotateArray(Arrays.asList(-1,-100,3,99), 2);
+    }
+
 }
